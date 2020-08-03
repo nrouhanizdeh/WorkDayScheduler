@@ -2,14 +2,18 @@
 
 ## Summary
 
-This JavaScript tool allows you to generate random passwords based on user-selected criteria. 
+This JavaScript tool is a simple calendar application that allows the user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
 ## Detail:
-- length : can choose a length of at least 8 characters and no more than 128 characters. If user selection is invalid, default length of 8 characters is used.
-- character type: can choose lowercase, uppercase, numeric, and/or special characters
--  input are validated: at least one character type should be selected, otherwise default character set is used.
-- randomly generate a password 
-- the password is either displayed in an alert or written to the page
+```
+- The user can use the daily planner to create a schedule. 
+- The current day is displayed at the top of the calendar
+- The user is presented with timeblocks for 8AM to 6PM (hourly)
+- Each timeblock is color coded to indicate whether it is in the past, present, or future
+- An event can be entered when they click into a timeblock
+- click the save button for that timeblock. The text for that event is saved in local storage
+- When the user refreshes the page, the saved events persist.
+```
 
 The following image demonstrates the application functionality:
 
