@@ -12,29 +12,32 @@ function buildHtml(){
 
     $.each(hours, function(index,value){
 
-        // create a new row
+        // creates a new row
         var newRow = $("<div>")
         newRow.attr("class", "row");
-        newRow.attr("id",`row${index}`)
+        newRow.attr("id",`row${index}`);
         $(".time-block").append(newRow);
         
-        // create a the hour block and append to the row
+        // creates a the hour block and append to the row
         var hourBlock = $("<div>")
         hourBlock.attr("class", "hour col-md-2");
         hourBlock.text(value);
         $(`#row${index}`).append(hourBlock);
 
-        // create a textarea tag and append to the row
+        // creates a textarea tag and append to the row
         var textBlock= $("<textarea>")
         textBlock.attr("class", "textBlock col-md-8");
+        textBlock.attr("id",`textblock${index}`);
         $(`#row${index}`).append(textBlock);
         
-        // create a save botton tag and append to the row
+        // creates a save botton tag and append to the row
         var saveBotton = $("<button>")
         saveBotton.attr("class", "saveBtn col-md-2");
+        saveBotton.attr("id",`${index}`);
         $(`#row${index}`).append(saveBotton);
         $(".saveBtn").text("save");
 
+        // Each timeblock is color coded to indicate whether it is in the past, present, or future
         if (parseInt(currentHour) > hourId){
             textBlock.addClass("past");
         } else if (parseInt(currentHour) == hourId){
@@ -43,9 +46,21 @@ function buildHtml(){
             textBlock.addClass("future"); 
         }
         hourId++;
-        
+
     });
 
 }
 
 buildHtml();
+
+
+$(".saveBtn").on("click", function() {
+    var buttonId = $(this)[0].id;
+    localStorage.setItem(`text${buttonId}`, document.getElementById(`textblock${buttonId}`).value);
+});
+
+for (i=0 ; i < hours.length ; i++){
+    if (window.localStorage.getItem(`text${i}`) && !(document.getElementById(`textblock${i}`).value) ){
+        document.getElementById(`textblock${i}`).textContent = window.localStorage.getItem(`text${i}`);
+    }
+}
